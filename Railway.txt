@@ -1,0 +1,137 @@
+trains
+GreenTrain1,1,08:45,80,600
+GreenTrain2,1,09:45,100,600
+GreenTrain4,1,11:00,100,600
+GreenrevTrain3,2,10:30,60,600
+GreenrevTrain5,2,11:50,120,600
+BlueTrain6,3,09:30,100,500
+BlueTrain7,3,11:30,120,700
+
+junctions
+central,1,1,13.0814,80.2729,0.6, 50
+egmore,1,1,13.079062,80.261062,0.5,25
+nehrupark,1,1,13.078791,80.250087,1,100
+kilpauk,1,1,13.077536,80.242866,0.7,50
+ShenoyNagar,1,1,13.077711,80.225103,1,150
+AnnaNagareast,1,1,13.084954,80.206512,0.6, 20
+Annanagartower,1,1,13.085041,80.208728,0.7,50
+Thirumangalam,1,1,13.085194,80.19995,0.5,75
+Koyambedu,1,1,13.073249,80.191584,0.7,40
+CMBT,1,1,13.068413,80.206316,1,200
+arumbakkam,1,1,13.062222,80.211667,0.5,50
+Vadapalani,1,1,13.0505,80.21208,0.4,30
+Ashoknagar,1,1,13.035483,80.211329,0.7,100
+Ekkattuhangal,1,1,13.017128,80.205302,0.6,75
+alandur,1,1,13.004315376081017,80.20139458788348,0.5,20
+stThomas Mount,1,1,12.5941,80.1156,0.4,100
+
+central_rev,2,1,13.0814,80.2729,0.6,50
+egmore_rev,2,1,13.079062,80.261062,1,25
+nehrupark_rev,2,1,13.078791,80.250087,1,10
+kilpauk_rev,2,1,13.077536,80.242866,0.7,50
+ShenoyNagar_rev,2,1,13.077711,80.225103,1,15
+AnnaNagareast_rev,2,1,13.084954,80.206512,0.6,20
+Annanagartower_rev,2,1,13.085041,80.208728,0.7,50
+Thirumangalam_rev,2,1,13.085194,80.19995,0.5,75
+Koyambedu_rev,2,1,13.073249,80.191584,0.7,40
+CMBT_rev,2,1,13.068413,80.206316,1,200
+arumbakkam_rev,2,1,13.062222,80.211667,0.5,50
+Vadapalani_rev,2,1,13.0505,80.21208,0.4,30
+Ashoknagar_rev,2,1,13.035483,80.211329,0.7,10
+Ekkattuhangal_rev,2,1,13.017128,80.205302,0.6,7
+alandur_rev,2,1,13.004315376081017,80.20139458788348,0.5,20
+stThomas Mount_rev,2,1,12.5941,80.1156,0.4,100
+
+Wimco Nagar Depot,3,1,13.184552104870093,80.30909171484026,1,200
+Wimco Nagar,3,1,13.180450111315286,80.30571419584007,0.5,100
+Tiruvottriyur,3,1,13.173018581604062,80.30518927225613,0.4,20
+Thiruvottriyur Theradi Metro,3,1,13.160160505286063,80.30267021672704,0.2,10
+Kaladipet Metro,3,1,13.151001594058174,80.29969111487843,1,50
+Tollgate,3,1,13.143347599606972,80.29637745351054,0.7,75
+New Washermanpet,3,1,13.135024142680335,80.29297645351036,0.3,20
+Tondiarpet,3,1,13.125246246940712,80.28696475535861,0.2,20
+Sir Thiyagaraya College,3,1,13.117078537219003,80.28540654556176,0.5,40
+Washermanpet,3,1,13.107762594004951,80.28090933447118,0.8,20
+Mannadi,3,1,13.0953228346827,80.2861281093323,0.2,20
+High Court,3,1,13.087749292525874,80.28517128419344,0.75,50
+Central,3,1,13.08136523818906,80.27294687901478,0.9,20
+Government Estate,3,1,13.070514734408215,80.27392864939766,0.1,10
+LIC metro,3,1,13.064811115487318,80.26722593154561,1,50
+Thousand lights,3,1,13.058481945562674,80.25846874049783,0.4,10
+AG DMS Metro,3,1,13.044747339500988,80.24781116216884,0.5,10
+Teynampet,3,1,13.0376670895939,80.24657847821935,0.4,10
+Nandanam,3,1,13.032112829558221,80.24167342418126,0.7,80
+Saidapet,3,1,13.024106469603549,80.22819094519055,0.9,10
+Little mount,3,1,13.015111274782493,80.22405011487618,1,30
+Guindy,3,1,13.009697789072746,80.21307899914228,0.7,10
+Alandur,3,1,13.004315376081017,80.20139458788348,0.1,40
+OTA-Nanganallur,3,1,13.000086476664555,80.19419729274139,0.2,30
+Meenambakkam Metro,3,1,12.987829031377109,80.17644106907395,0.2,9
+Airport,3,1,12.981485447630961,80.16392687679814,0.5,10
+
+
+
+
+sections
+Section1,1,central,egmore
+Section2,1,egmore,nehrupark
+Section3,1,nehrupark,kilpauk  
+Section4,1,kilpauk,ShenoyNagar  
+Section5,1,ShenoyNagar,AnnaNagareast  
+Section6,1,AnnaNagareast,Annanagartower  
+Section7,1,Annanagartower,Thirumangalam  
+Section8,1,Thirumangalam,Koyambedu  
+Section9,1,Koyambedu,CMBT  
+Section10,1,CMBT,arumbakkam  
+Section11,1,arumbakkam,Vadapalani  
+Section12,1,Vadapalani,Ashoknagar  
+Section13,1,Ashoknagar,Ekkattuhangal  
+Section14,1,Ekkattuhangal,alandur  
+Section15,1,alandur,stThomas Mount  
+
+Section16,2,stThomas Mount_rev,alandur_rev
+Section17,2,alandur_rev,Ekkattuhangal_rev
+Section18,2,Ekkattuhangal_rev,Ashoknagar_rev
+Section19,2,Ashoknagar_rev,Vadapalani_rev
+Section20,2,Vadapalani_rev,arumbakkam_rev
+Section21,2,arumbakkam_rev,CMBT_rev
+Section22,2,CMBT_rev,Koyambedu_rev
+Section23,2,Koyambedu_rev,Thirumangalam_rev
+Section24,2,Thirumangalam_rev,Annanagartower_rev
+Section25,2,Annanagartower_rev,AnnaNagareast_rev
+Section26,2,AnnaNagareast_rev,ShenoyNagar_rev
+Section27,2,ShenoyNagar_rev,kilpauk_rev
+Section28,2,kilpauk_rev,nehrupark_rev
+Section29,2,nehrupark_rev,egmore_rev
+Section30,2,egmore_rev,central_rev
+
+Section31,3,Wimco Nagar Depot,Wimco Nagar
+Section32,3,Wimco Nagar,Tiruvottriyur
+Section33,3,Tiruvottriyur,Thiruvottriyur Theradi Metro
+Section34,3,Thiruvottriyur Theradi Metro,Kaladipet Metro
+Section35,3,Kaladipet Metro,Tollgate
+Section36,3,Tollgate,New Washermanpet
+Section37,3,New Washermanpet,Tondiarpet
+Section38,3,Tondiarpet,Sir Thiyagaraya College
+Section39,3,Sir Thiyagaraya College,Washermanpet
+Section40,3,Washermanpet,Mannadi
+Section41,3,Mannadi,High Court
+Section42,3,High Court,Central
+Section43,3,Central,Government Estate
+Section44,3,Government Estate,LIC metro
+Section45,3,LIC metro,Thousand lights
+Section46,3,Thousand lights,AG DMS Metro
+Section47,3,AG DMS Metro,Teynampet
+Section48,3,Teynampet,Nandanam
+Section49,3,Nandanam,Saidapet
+Section50,3,Saidapet,Little mount
+Section51,3,Little mount,Guindy
+Section52,3,Guindy,Alandur
+Section53,3,Alandur,OTA-Nanganallur
+Section54,3,OTA-Nanganallur,Meenambakkam Metro
+Section55,3,Meenambakkam Metro,Airport
+
+lines and first sections
+1,Section1
+2,Section16
+3,Section31
