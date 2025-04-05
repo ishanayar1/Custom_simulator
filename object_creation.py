@@ -209,7 +209,7 @@ def obj_creation(file_path,train_list, junction_list, section_list, line_list):
 
     common_junctions= find_common_junction(junction_list)
     assets = train_list + signal_list
-    return assets
+    return assets, common_junctions
 
 
 def find_common_junction(junction_list):

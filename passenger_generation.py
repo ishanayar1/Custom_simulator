@@ -13,8 +13,9 @@ class Passenger:
         self.leaving_time = ""
         self.delay = 0
         self.total_time = 0
-        self.shifts_line = False
+        self.shift = 0
         
+
 def find_junction_by_name_line(junction_list, target_name, target_line):
     for junction in junction_list:
         if junction.name == target_name and abs(junction.line) == abs(target_line):
