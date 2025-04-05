@@ -6,8 +6,10 @@ import numpy as np
 from passenger_generation import Passenger, passenger_parse, passenger_arrival, generate_passenger_data, total_time, get_distance_between_junction
 from object_creation import Junction, Trains, obj_creation, arranging_sections,find_junction_by_name_line,find_section_by_name,find_line_by_number,find_common_junction
 import pandas as pd
+import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
+
 
 class timetable:
     def __init__(self, train, section, entering_time, leaving_time):
@@ -187,6 +189,32 @@ def find_next_sec_line(line_list, section):
         next_section = ""
     return next_section
 
+def find_same_junctions(junction, same_junctions):
+    for key in same_junctions.keys():
+        if (key.name == junction.name and key.line == junction.line and
+            key.signal == junction.signal and key.x == junction.x and key.y == junction.y):
+            return same_junctions[key]  # Return the list of junctions if found
+    return None  # Not found
+
+def find_shift_junction(junction, dest_jn, same_junctions):
+    curr_line = junction.line 
+    for jn in same_junctions:
+        if dest_jn.line == jn.line:
+            return jn
+    return None
+
+def find_shifting_of_passenger(passenger_list, junction_list, line_list):
+    # destination = find_junction_by_name_line(junction_list, passenger.destination, passenger.line)
+    for passenger in passenger_list:
+        line = find_line_by_number(line_list, passenger.line)
+        junctions = line.junctions
+        for junction in junctions:
+            if junction.name == passenger.destination:
+                passenger.shift = 0
+                return
+    passenger.shift = 1
+    return
+
 def main():
 
     train_list = []
@@ -194,7 +222,7 @@ def main():
     junction_list = []
     passenger_list = []
     line_list = []
-    file_path = "/Users/ishanayar/Desktop/Custom_Simulator/common_junction.txt"
+    file_path = "common_junction.txt"
 
     with open(file_path, "r") as file:
         lines = file.readlines()
@@ -202,10 +230,11 @@ def main():
     for line in lines:
         print(line.strip()) 
         
-    asset_list = obj_creation(file_path,train_list, junction_list, section_list, line_list)
+    asset_list,same_junctions = obj_creation(file_path,train_list, junction_list, section_list, line_list)
     arranging_sections(section_list, line_list)
+    
 
-    output_file = "/Users/ishanayar/Desktop/Custom_Simulator/passenger.txt"
+    output_file = "passenger.txt"
     passenger_data=[]
     for junction in junction_list:
         if junction.signal == 1:
@@ -219,6 +248,7 @@ def main():
 
     
     passenger_list, junction_list = passenger_arrival(passenger_list, junction_list)
+    find_shifting_of_passenger(passenger_list, junction_list, line_list)
 
     timetables = []
 
@@ -282,8 +312,21 @@ def main():
                         passenger.leaving_time = current_section.train_leaving_time
                         boarding_junction = find_junction_by_name_line(junction_list, passenger.boarding_station, passenger.line)
                         destination_junction = find_junction_by_name_line(junction_list, passenger.destination, passenger.line)
-                        passenger.delay= (total_time(passenger.arrival_time, passenger.leaving_time))/get_distance_between_junction (boarding_junction, destination_junction)
-
+                        passenger.delay= passenger.delay + (total_time(passenger.arrival_time, passenger.leaving_time))/get_distance_between_junction (boarding_junction, destination_junction)
+                    elif passenger.shift == 1:
+                        boarding_junction = find_junction_by_name_line(junction_list, passenger.boarding_station, passenger.line)
+                        destination_junction = find_junction_by_name_line(junction_list, passenger.destination, passenger.line)
+                        similar_junctions = find_same_junctions(current_section.end, same_junctions)
+                        if similar_junctions == None:
+                            new_passengers.append(passenger)
+                        else:
+                            shift_junction = find_shift_junction(current_section.end, destination_junction, similar_junctions)
+                            if shift_junction == None:
+                                new_passengers.append(passenger)
+                            else:
+                                passenger.delay = passenger.delay + (total_time(passenger.arrival_time, current_section.train_leaving_time))/get_distance_between_junction(boarding_junction, current_section.end)
+                                passenger.arrival_time = current_section.train_leaving_time
+                                shift_junction.append(passenger)
                     else: new_passengers.append(passenger)
 
                 i.passengers = new_passengers
@@ -339,7 +382,7 @@ def main():
     #       for train in train_list:
     #           print(f"Name: {train.name}, current_section: {train.section}, entering_time: {train.sec_entering_time}, leaving_time: {train.sec_leaving_time}")
     
-    final_passenger= "/Users/ishanayar/Desktop/Custom_Simulator/final_passenger.txt"
+    final_passenger= "final_passenger.txt"
     updated_file(final_passenger,passenger_list)
     
     for train in train_list:
@@ -354,7 +397,7 @@ def main():
     plt.ylabel('Number of Passengers')
     plt.title('Passengers in train over Time')
     plt.legend()
-    plt.show()
+    plt.savefig("plot.png")
 
 
 if __name__ == "__main__":
