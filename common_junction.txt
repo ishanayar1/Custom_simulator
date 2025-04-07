@@ -1,23 +1,22 @@
 trains
 Train1,1,08:45,80,600
-
+Train2,2,09:45,80,600
 
 junctions
-Junction1,1,1,0,0,0.7,50
-Junction2,1,1,2,0,0.6,25
-Junction9,3,1,2,0,0.6,25
-Junction3,1,1,4,0,0.5,100
-Junction4,2,1,0,0,0.7,50
-Junction5,2,1,2,0,0.6,150
-Junction6,2,1,4,0,0.5,10
-Junction7,1,0,6,0,0.5,50
+Junction1,1,1,-2,0,0.7,1
+Junction2,1,1,0,0,0.6,1
+Junction3,1,1,2,0,0.5,1
+Junction4,2,1,0,-2,0.7,5
+Junction5,2,1,0,0,0.6,1
+Junction6,2,1,0,2,0.5,1
+
 
 sections
 Section1,1,Junction1,Junction2
 Section2,1,Junction2,Junction3
-Section3,2,Junction6,Junction5
-Section4,2,Junction5,Junction4
-Section5,1,Junction3,Junction7
+Section3,2,Junction4,Junction5
+Section4,2,Junction5,Junction6
+
 
 
 lines and first sections

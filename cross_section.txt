@@ -1,6 +1,8 @@
 trains
 Train1,1,08:00,100,300
 Train2,2,08:00,100,300
+Train3,1,10:00,100,300
+Train4,2,10:00,100,300
 
 junctions
 Junction1,1,0,0,0

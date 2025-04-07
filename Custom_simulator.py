@@ -191,8 +191,7 @@ def find_next_sec_line(line_list, section):
 
 def find_same_junctions(junction, same_junctions):
     for key in same_junctions.keys():
-        if (key.name == junction.name and key.line == junction.line and
-            key.signal == junction.signal and key.x == junction.x and key.y == junction.y):
+        if (key.signal == junction.signal and key.x == junction.x and key.y == junction.y):
             return same_junctions[key]  # Return the list of junctions if found
     return None  # Not found
 
@@ -203,17 +202,29 @@ def find_shift_junction(junction, dest_jn, same_junctions):
             return jn
     return None
 
+# def find_shifting_of_passenger(passenger_list, junction_list, line_list):
+#     # destination = find_junction_by_name_line(junction_list, passenger.destination, passenger.line)
+#     for passenger in passenger_list:
+#         line = find_line_by_number(line_list, passenger.line)
+#         junctions = line.junctions
+#         for junction in junctions:
+#             if junction.name == passenger.destination:
+#                 passenger.shift = 0
+#                 return
+#     passenger.shift = 1
+#     return
+
 def find_shifting_of_passenger(passenger_list, junction_list, line_list):
-    # destination = find_junction_by_name_line(junction_list, passenger.destination, passenger.line)
     for passenger in passenger_list:
         line = find_line_by_number(line_list, passenger.line)
-        junctions = line.junctions
-        for junction in junctions:
-            if junction.name == passenger.destination:
-                passenger.shift = 0
-                return
-    passenger.shift = 1
-    return
+        if not line:
+            passenger.shift = 1
+            continue
+        destination_junction = find_junction_by_name_line(junction_list, passenger.destination, passenger.line)
+        if not destination_junction:
+            passenger.shift = 1
+        else:
+            passenger.shift = 0
 
 def main():
 
@@ -231,23 +242,32 @@ def main():
         print(line.strip()) 
         
     asset_list,same_junctions = obj_creation(file_path,train_list, junction_list, section_list, line_list)
+    print(f'these are the same junctions:')
+    for i in same_junctions:
+        print(f'name: {i.name}:')
+        for j in same_junctions[i]:
+            print({j.name})
+            
     arranging_sections(section_list, line_list)
     
 
-    output_file = "passenger.txt"
-    passenger_data=[]
-    for junction in junction_list:
-        if junction.signal == 1:
-            lambda_value = junction.lambda_value if hasattr(junction, 'lambda_value') else 0.5
-            num_passengers = junction.num_passengers if hasattr(junction, 'num_passengers') else 10
-            passenger_data = generate_passenger_data(passenger_data, junction, lambda_value, num_passengers, line_list, output_file)
+    output_file = "p1.txt"
+    # passenger_data=[]
+    # for junction in junction_list:
+    #     if junction.signal == 1:
+    #         lambda_value = junction.lambda_value if hasattr(junction, 'lambda_value') else 0.5
+    #         num_passengers = junction.num_passengers if hasattr(junction, 'num_passengers') else 10
+    #         passenger_data = generate_passenger_data(passenger_data, junction, lambda_value, num_passengers, line_list,junction_list, output_file)
 
 
-    write_data_to_file(output_file,passenger_data)
+    # write_data_to_file(output_file,passenger_data)
     passenger_list = passenger_parse(output_file)
 
     
     passenger_list, junction_list = passenger_arrival(passenger_list, junction_list)
+    for junc in junction_list:
+        print(f"Name: {junc.name}, line: {junc.line}")
+
     find_shifting_of_passenger(passenger_list, junction_list, line_list)
 
     timetables = []
@@ -308,15 +328,30 @@ def main():
             if current_section.end.signal == 1:
                 new_passengers = []
                 for passenger in i.passengers:
-                    if passenger.destination == current_section.end.name:
+                    if passenger.destination == current_section.end.name and passenger.shift==0:
                         passenger.leaving_time = current_section.train_leaving_time
                         boarding_junction = find_junction_by_name_line(junction_list, passenger.boarding_station, passenger.line)
                         destination_junction = find_junction_by_name_line(junction_list, passenger.destination, passenger.line)
                         passenger.delay= passenger.delay + (total_time(passenger.arrival_time, passenger.leaving_time))/get_distance_between_junction (boarding_junction, destination_junction)
+
                     elif passenger.shift == 1:
+                        print("hiiiiiiiiiii i am entering")
+                        print(f'{current_section.end.name}')
                         boarding_junction = find_junction_by_name_line(junction_list, passenger.boarding_station, passenger.line)
-                        destination_junction = find_junction_by_name_line(junction_list, passenger.destination, passenger.line)
+                        destination_junction = None
+                        for junc in junction_list:
+                            if junc.name == passenger.destination and junc.signal == 1:
+                                destination_junction = junc
+                                break
+                        if not destination_junction:
+                            new_passengers.append(passenger)
+                            continue
+                        
                         similar_junctions = find_same_junctions(current_section.end, same_junctions)
+                        print(f'similar junction are:')
+                        for junction in similar_junctions:
+                            print(f"Name: {junction.name}, Signal: {junction.signal}, Coordinates: ({junction.x}, {junction.y})")
+
                         if similar_junctions == None:
                             new_passengers.append(passenger)
                         else:
@@ -324,10 +359,18 @@ def main():
                             if shift_junction == None:
                                 new_passengers.append(passenger)
                             else:
+                                
                                 passenger.delay = passenger.delay + (total_time(passenger.arrival_time, current_section.train_leaving_time))/get_distance_between_junction(boarding_junction, current_section.end)
+
                                 passenger.arrival_time = current_section.train_leaving_time
-                                shift_junction.append(passenger)
+
+                                shift_junction.passengerqueue.append((passenger.arrival_time, passenger))
+                                passenger.line = shift_junction.line
+                                passenger.shift = 0
+                                passenger.boarding_station = shift_junction.name 
+                                
                     else: new_passengers.append(passenger)
+
 
                 i.passengers = new_passengers
                 i.no_of_passengers = len(i.passengers)

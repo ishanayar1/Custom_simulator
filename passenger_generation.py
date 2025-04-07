@@ -2,6 +2,7 @@ import numpy as np
 from datetime import datetime
 import random
 import math
+from object_creation import Junction, Trains, obj_creation, arranging_sections,find_junction_by_name_line,find_section_by_name,find_line_by_number,find_common_junction
 
 class Passenger:
     def __init__(self, name, line, arrival_time, boarding_station, destination):
@@ -38,18 +39,22 @@ def passenger_parse(file_path):
 def passenger_arrival(passenger_list, junction_list):
     for passenger in passenger_list:
         boarding_junction = find_junction_by_name_line(junction_list, passenger.boarding_station, passenger.line)
-        destination_junction = find_junction_by_name_line(junction_list, passenger.destination, passenger.line)
+        
+        destination_junction = None
+        for junc in junction_list:
+            if junc.name == passenger.destination and junc.signal == 1:
+                destination_junction = junc
+                break
+        
         if destination_junction is None:
-            print("Destination junction does not exist.")
-        elif destination_junction.signal == 0:
-            print("Destination Junction not a valid station")
+            print(f"Destination junction {passenger.destination} does not exist or is inactive.")
         if boarding_junction is None:
-            print("Boarding junction does not exist.")
-        elif boarding_junction.signal == 0:
-            print("Boarding Junction not a valid station")
+            print(f"Boarding junction {passenger.boarding_station} does not exist.")
         else:
             boarding_junction.passengerqueue.append((passenger.arrival_time, passenger))
+    
     return passenger_list, junction_list
+
 
 def time_string(time: str, mins: int) -> str:
     hrs = int(time[:2])
@@ -95,26 +100,42 @@ def generate_passenger_arrivals(start_time, num_passengers, lambda_rate):
 
     return arrival_times
 
-def generate_passenger_data(passenger_data, junction, lambda_value, num_passengers, line_list, output_file):
+def generate_passenger_data(passenger_data, junction, lambda_value, num_passengers, line_list, junction_list,output_file):
     start_time = "08:00"
-
     current_lambda = lambda_value
     arrival_times = generate_passenger_arrivals(start_time, num_passengers, current_lambda)
-    destination = next_stations(junction, line_list)
+    
+    valid_junctions = [j for j in junction_list if isinstance(j, Junction)]
+    common_junction_map = find_common_junction(valid_junctions)
 
-    if destination:
-      for arrival_time in arrival_times:
-          pass_destination = random.choice(destination)
-          passenger = {
-              'name': f"P{len(passenger_data)+1}",
-              'line': junction.line ,
-              'arrival_time': arrival_time,
-              'boarding_station': junction.name,
-              'destination': pass_destination.name
-          }
-          passenger_data.append(passenger)
-
+    destination_candidates = []
+    current_line_dest = next_stations(junction, line_list)
+    destination_candidates.extend(current_line_dest)
+    
+    if junction in common_junction_map:
+        for connected_junc in common_junction_map[junction]:
+            connected_dest = next_stations(connected_junc, line_list)
+            destination_candidates.extend(connected_dest)
+    
+    destination_candidates = [j for j in destination_candidates if j.signal == 1]
+    for arrival_time in arrival_times:
+        if destination_candidates:
+            pass_destination = random.choice(destination_candidates)
+            passenger = {
+                'name': f"P{len(passenger_data)+1}",
+                'line': junction.line,
+                'arrival_time': arrival_time,
+                'boarding_station': junction.name,
+                'destination': pass_destination.name
+            }
+            passenger_data.append(passenger)
+    
     return passenger_data
+
+# def get_passenger_data(passenger_data,input_file):
+    
+    
+#     return passenger_data
 
 def total_time(arrival,departure):
     time_format = "%H:%M"

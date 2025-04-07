@@ -70,6 +70,8 @@ class Junction:
         self.signal_status = new_signal
         self.time_of_change = new_time_of_change
 
+
+
 class Line:
     def __init__(self, line_number):
         self.line_number = line_number
@@ -211,7 +213,6 @@ def obj_creation(file_path,train_list, junction_list, section_list, line_list):
     assets = train_list + signal_list
     return assets, common_junctions
 
-
 def find_common_junction(junction_list):
     junction_map = {}
     for i in junction_list:
@@ -226,19 +227,13 @@ def find_common_junction(junction_list):
                 if j not in junction_map:
                     junction_map[j] = set()
                 
-                junction_map[i].add(j)
-                junction_map[j].add(i)  
-
-    printed_junctions = set()
-    for i, j in junction_map.items():
-        if i in printed_junctions:
-            continue  
-        print(f"{i.name} (Line {i.line}) and common are:")
-        for common in j:
-            print(f" {common.name} (Line {common.line})")
-            printed_junctions.add(common)  
-        printed_junctions.add(i)  
+                if i not in junction_map[j]:
+                    junction_map[i].add(j)
+                if j not in junction_map[i]:
+                    junction_map[j].add(i)  
     return junction_map
+
+
 
 def arranging_sections(section_list, line_list):
     line_sec_dict = {}
