@@ -191,8 +191,9 @@ def find_next_sec_line(line_list, section):
 
 def find_same_junctions(junction, same_junctions):
     for key in same_junctions.keys():
-        if (key.signal == junction.signal and key.x == junction.x and key.y == junction.y):
-            return same_junctions[key]  # Return the list of junctions if found
+        if (key.signal == junction.signal and key.x == junction.x and key.y == junction.y and key.name!= junction.name):
+            print(f'similar{ key.name}')
+            return [key]  # Return the list of junctions if found
     return None  # Not found
 
 def find_shift_junction(junction, dest_jn, same_junctions):
@@ -249,7 +250,6 @@ def main():
             print({j.name})
             
     arranging_sections(section_list, line_list)
-    
 
     output_file = "p1.txt"
     # passenger_data=[]
@@ -269,7 +269,6 @@ def main():
         print(f"Name: {junc.name}, line: {junc.line}")
 
     find_shifting_of_passenger(passenger_list, junction_list, line_list)
-
     timetables = []
 
     while True:
@@ -335,8 +334,6 @@ def main():
                         passenger.delay= passenger.delay + (total_time(passenger.arrival_time, passenger.leaving_time))/get_distance_between_junction (boarding_junction, destination_junction)
 
                     elif passenger.shift == 1:
-                        print("hiiiiiiiiiii i am entering")
-                        print(f'{current_section.end.name}')
                         boarding_junction = find_junction_by_name_line(junction_list, passenger.boarding_station, passenger.line)
                         destination_junction = None
                         for junc in junction_list:
@@ -348,9 +345,6 @@ def main():
                             continue
                         
                         similar_junctions = find_same_junctions(current_section.end, same_junctions)
-                        print(f'similar junction are:')
-                        for junction in similar_junctions:
-                            print(f"Name: {junction.name}, Signal: {junction.signal}, Coordinates: ({junction.x}, {junction.y})")
 
                         if similar_junctions == None:
                             new_passengers.append(passenger)
