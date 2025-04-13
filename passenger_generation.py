@@ -1,3 +1,4 @@
+
 import numpy as np
 from datetime import datetime
 import random
@@ -100,24 +101,43 @@ def generate_passenger_arrivals(start_time, num_passengers, lambda_rate):
 
     return arrival_times
 
-def generate_passenger_data(passenger_data, junction, lambda_value, num_passengers, line_list, junction_list,output_file):
+def generate_passenger_data(passenger_data, junction, lambda_value, num_passengers, line_list, junction_list, output_file):
     start_time = "08:00"
     current_lambda = lambda_value
     arrival_times = generate_passenger_arrivals(start_time, num_passengers, current_lambda)
-    
+
     valid_junctions = [j for j in junction_list if isinstance(j, Junction)]
     common_junction_map = find_common_junction(valid_junctions)
 
-    destination_candidates = []
-    current_line_dest = next_stations(junction, line_list)
-    destination_candidates.extend(current_line_dest)
-    
-    if junction in common_junction_map:
-        for connected_junc in common_junction_map[junction]:
-            connected_dest = next_stations(connected_junc, line_list)
-            destination_candidates.extend(connected_dest)
-    
-    destination_candidates = [j for j in destination_candidates if j.signal == 1]
+    destination_candidates = [
+        j for j in next_stations(junction, line_list)
+        if j.signal == 1 and j != junction
+    ]
+
+    if junction not in common_junction_map:
+
+        next_junctions = next_stations(junction, line_list)
+        transfer_junctions_ahead = [
+            j for j in next_junctions
+            if j in common_junction_map and j.line == junction.line
+        ]
+
+        for transfer_junc in transfer_junctions_ahead:
+            connected_junctions = common_junction_map[transfer_junc]
+            for connected_junc in connected_junctions:
+                if connected_junc.line != junction.line:
+                    new_destinations = next_stations(connected_junc, line_list)
+                    destination_candidates.extend([
+                        j for j in new_destinations
+                        if j.signal == 1 and j != junction
+                    ])
+
+    destination_candidates = list({j.name: j for j in destination_candidates}.values())
+
+    print(f'For junction {junction.name} possible destinations are:')
+    for j in destination_candidates:
+        print(f'  {j.name}')
+
     for arrival_time in arrival_times:
         if destination_candidates:
             pass_destination = random.choice(destination_candidates)
@@ -129,13 +149,9 @@ def generate_passenger_data(passenger_data, junction, lambda_value, num_passenge
                 'destination': pass_destination.name
             }
             passenger_data.append(passenger)
-    
+
     return passenger_data
 
-# def get_passenger_data(passenger_data,input_file):
-    
-    
-#     return passenger_data
 
 def total_time(arrival,departure):
     time_format = "%H:%M"

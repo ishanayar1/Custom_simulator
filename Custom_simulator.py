@@ -52,7 +52,7 @@ def initial_signaling(junction_list):
             if i.name not in junc_dict:
                 junc_dict[i.name] = []
             junc_dict[i.name].append(i)
-
+            
     for i in junc_dict:
         for j in range(len(junc_dict[i])):
             jun = junc_dict[i][j]
@@ -60,7 +60,7 @@ def initial_signaling(junction_list):
                 jun.set_status(0, time_string("08:00", 5))
             else:
                 jun.set_status(1, time_string("08:00", 5*(len(junc_dict[i]) - 1)))
-
+                
 def signaling_1(junction_list, junction):
     new_status = 0
     new_time = ""
@@ -203,18 +203,6 @@ def find_shift_junction(junction, dest_jn, same_junctions):
             return jn
     return None
 
-# def find_shifting_of_passenger(passenger_list, junction_list, line_list):
-#     # destination = find_junction_by_name_line(junction_list, passenger.destination, passenger.line)
-#     for passenger in passenger_list:
-#         line = find_line_by_number(line_list, passenger.line)
-#         junctions = line.junctions
-#         for junction in junctions:
-#             if junction.name == passenger.destination:
-#                 passenger.shift = 0
-#                 return
-#     passenger.shift = 1
-#     return
-
 def find_shifting_of_passenger(passenger_list, junction_list, line_list):
     for passenger in passenger_list:
         line = find_line_by_number(line_list, passenger.line)
@@ -227,6 +215,42 @@ def find_shifting_of_passenger(passenger_list, junction_list, line_list):
         else:
             passenger.shift = 0
 
+# def get_state(train_list, section_list, junction_list):
+#     states = []
+
+#     for train in train_list:
+#         section = next((s for s in section_list if s.name == train.section), None)
+#         next_junction = section.end if section else None
+
+#         train_state = {
+#             'train_name': train.name,
+#             'speed': train.speed,
+#             'capacity': train.capacity,
+#             'no_of_passengers': train.no_of_passengers,
+#             'current_section': train.section,
+#             'next_station': next_junction.name if next_junction else None,
+#             'next_station_signal': next_junction.signal_status if next_junction else None
+#         }
+#         states.append(train_state)
+
+#     for junction in junction_list:
+#         junction_state = {
+#             'junction_name': junction.name,
+#             'signal_status': junction.signal_status,
+#             'no_of_waiting_passengers': len(junction.passengerqueue)
+#         }
+#         states.append(junction_state)
+
+#     return states
+
+# def find_reward_delay(passenger_list):
+#     delay=0
+#     for passenger in passenger_list:
+#         delay+= passenger.delay
+        
+#     return -delay
+        
+    
 def main():
 
     train_list = []
@@ -251,16 +275,16 @@ def main():
             
     arranging_sections(section_list, line_list)
 
-    output_file = "p1.txt"
-    # passenger_data=[]
-    # for junction in junction_list:
-    #     if junction.signal == 1:
-    #         lambda_value = junction.lambda_value if hasattr(junction, 'lambda_value') else 0.5
-    #         num_passengers = junction.num_passengers if hasattr(junction, 'num_passengers') else 10
-    #         passenger_data = generate_passenger_data(passenger_data, junction, lambda_value, num_passengers, line_list,junction_list, output_file)
+    output_file = "passenger.txt"
+    passenger_data=[]
+    for junction in junction_list:
+        if junction.signal == 1:
+            lambda_value = junction.lambda_value if hasattr(junction, 'lambda_value') else 0.5
+            num_passengers = junction.num_passengers if hasattr(junction, 'num_passengers') else 10
+            passenger_data = generate_passenger_data(passenger_data, junction, lambda_value, num_passengers, line_list,junction_list, output_file)
 
 
-    # write_data_to_file(output_file,passenger_data)
+    write_data_to_file(output_file,passenger_data)
     passenger_list = passenger_parse(output_file)
 
     
@@ -421,7 +445,7 @@ def main():
     
     final_passenger= "final_passenger.txt"
     updated_file(final_passenger,passenger_list)
-    
+
     for train in train_list:
         time_series = pd.to_datetime([entry[0] for entry in train.passenger_time], format="%H:%M")
         passenger_counts = [entry[1] for entry in train.passenger_time]
