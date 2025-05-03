@@ -282,8 +282,3 @@ def arranging_sections(section_list, line_list):
 
     return
 
-
-# encode state space in vector, junction , histogram of passenger waiting. example junction:2 cross section.
-# put stochastic delay. how many people switching train
-
-#error: passenger boarding and destination

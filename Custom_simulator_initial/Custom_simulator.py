@@ -215,41 +215,6 @@ def find_shifting_of_passenger(passenger_list, junction_list, line_list):
         else:
             passenger.shift = 0
 
-# def get_state(train_list, section_list, junction_list):
-#     states = []
-
-#     for train in train_list:
-#         section = next((s for s in section_list if s.name == train.section), None)
-#         next_junction = section.end if section else None
-
-#         train_state = {
-#             'train_name': train.name,
-#             'speed': train.speed,
-#             'capacity': train.capacity,
-#             'no_of_passengers': train.no_of_passengers,
-#             'current_section': train.section,
-#             'next_station': next_junction.name if next_junction else None,
-#             'next_station_signal': next_junction.signal_status if next_junction else None
-#         }
-#         states.append(train_state)
-
-#     for junction in junction_list:
-#         junction_state = {
-#             'junction_name': junction.name,
-#             'signal_status': junction.signal_status,
-#             'no_of_waiting_passengers': len(junction.passengerqueue)
-#         }
-#         states.append(junction_state)
-
-#     return states
-
-# def find_reward_delay(passenger_list):
-#     delay=0
-#     for passenger in passenger_list:
-#         delay+= passenger.delay
-        
-#     return -delay
-        
     
 def main():
 
@@ -412,11 +377,6 @@ def main():
 
             new_sec_entering_time = i.sec_leaving_time
             new_section = find_section_by_name(section_list, find_next_sec_line(current_line, current_section.name))
-            # if isinstance(i, Trains):
-            #     for train in train_list:
-            #         print(f"Name: {train.name}, current_section: {train.section}, entering_time: {train.sec_entering_time}, leaving_time: {train.sec_leaving_time}")
-
-
 
             section_len = distance(new_section.start.x, new_section.start.y, new_section.end.x, new_section.end.y)
             i.section = new_section.name

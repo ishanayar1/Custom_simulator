@@ -20,6 +20,6 @@ Section4,2,Junction5,Junction6
 
 
 
-lines and first sections
-1,Section1
-2,Section3
+lines and first junctions
+1,Junction1,Section1
+2,Junction4,Section3
