@@ -1,0 +1,16 @@
+Rewards per episode:
+episode: 0/15, score: -7933937.500528234
+episode: 1/15, score: -8134265.284522808
+episode: 2/15, score: -7538650.2036692025
+episode: 3/15, score: -8417727.382289747
+episode: 4/15, score: -7157439.350070035
+episode: 5/15, score: -8403248.566506077
+episode: 6/15, score: -7559220.688388948
+episode: 7/15, score: -8317677.892212239
+episode: 8/15, score: -8542012.559896832
+episode: 9/15, score: -8018345.346374063
+episode: 10/15, score: -7845069.323558369
+episode: 11/15, score: -7708951.63083704
+episode: 12/15, score: -8486832.834565163
+episode: 13/15, score: -7474887.694658577
+episode: 14/15, score: -8270814.336071006

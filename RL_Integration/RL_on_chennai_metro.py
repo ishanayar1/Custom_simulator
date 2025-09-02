@@ -234,7 +234,7 @@ def random_policy(train_list, junction_list, section_list, passenger_list, line_
         junction_list = []
         passenger_list = []
         line_list = []
-        file_path = "Common_junction/common_junction.txt"
+        file_path = "Chennai_metro/chennaitrains_list.txt"
 
         with open(file_path, "r") as file:
             lines = file.readlines()
@@ -413,7 +413,7 @@ def random_policy(train_list, junction_list, section_list, passenger_list, line_
 def policy_after_training(agent, train_list, junction_list, section_list, passenger_list, line_list, asset_list, same_junctions, perm_passenger_file,rewards_file,png_file, deployment_episodes=15):
     print("\nDeploying learned policy without exploration or learning...")
 
-    agent.load('Common_junction/dqn_final_weights.weights.h5')
+    agent.load('Chennai_metro/dqn_final_weights.weights.h5')
     agent.epsilon = 0
 
     deployment_rewards = []
@@ -424,7 +424,7 @@ def policy_after_training(agent, train_list, junction_list, section_list, passen
         junction_list = []
         passenger_list = []
         line_list = []
-        file_path = "Common_junction/common_junction.txt"
+        file_path = "Chennai_metro/chennaitrains_list.txt"
         with open(file_path, "r") as file:
             lines = file.readlines()
         asset_list, same_junctions = obj_creation(file_path, train_list, junction_list, section_list, line_list)
@@ -612,7 +612,7 @@ def training_rewards_function(agent, train_list, junction_list, section_list, pa
         junction_list = []
         passenger_list = []
         line_list = []
-        file_path= "Common_junction/common_junction.txt"
+        file_path= "Chennai_metro/chennaitrains_list.txt"
         with open(file_path, "r") as file:
             lines = file.readlines()
         for line in lines:
@@ -785,7 +785,7 @@ def training_rewards_function(agent, train_list, junction_list, section_list, pa
                 agent.memorize(state, action, reward, next_state)
                 timetables.append(timetable(i.name, i.junction, i.junc_entering_time, i.junc_leaving_time))
 
-        final_passenger = "Common_junction/final_passenger.txt"
+        final_passenger = "Chennai_metro/final_passenger.txt"
         updated_file(final_passenger, passenger_list)
         batch_size=3
         if len(agent.memory) > batch_size:
@@ -796,7 +796,6 @@ def training_rewards_function(agent, train_list, junction_list, section_list, pa
         episode_rewards.append(score)
         with open(rewards_file, "a") as f:
             f.write(f"episode: {e}/{deployment_episodes}, score: {score}\n")
-    agent.save('Common_junction/dqn_final_weights.weights.h5')
 
     for train in train_list:
         time_series = pd.to_datetime([entry[0] for entry in train.passenger_time], format="%H:%M")
@@ -827,6 +826,7 @@ def training_rewards_function(agent, train_list, junction_list, section_list, pa
 
     plt.grid(True)
     plt.show()
+    agent.save('Chennai_metro/dqn_final_weights.weights.h5')
     
 
 
@@ -835,14 +835,14 @@ def main():
     EPISODES = 15
     action_size = 2
     batch_size = 3
-    file_path = "Common_junction/common_junction.txt"
-    output_file = "Common_junction/passenger.txt"
-    doc_file = "Common_junction/Rewards.txt"
-    optimal_rewards_file= "Common_junction/DeploymentReward.txt"
-    optimal_png_file = "Common_junction/OptimalRewards.png"
-    random_rewards_file= "Common_junction/RandomReward.txt"
-    random_png_file= "Common_junction/RandomRewards.png"
-    png_file= "Common_junction/Rewards.png"
+    file_path = "Chennai_metro/chennaitrains_list.txt"
+    output_file = "Chennai_metro/passenger.txt"
+    doc_file = "Chennai_metro/Rewards.txt"
+    optimal_rewards_file= "Chennai_metro/DeploymentReward.txt"
+    optimal_png_file = "Chennai_metro/OptimalRewards.png"
+    random_rewards_file= "Chennai_metro/RandomReward.txt"
+    random_png_file= "Chennai_metro/RandomRewards.png"
+    png_file= "Chennai_metro/Rewards.png"
     with open(doc_file, "w") as f:
         f.write("Rewards per episode:\n")
 
@@ -852,7 +852,7 @@ def main():
     junction_list = []
     passenger_list = []
     line_list = []
-    file_path = "Common_junction/common_junction.txt"
+    file_path = "Chennai_metro/chennaitrains_list.txt"
 
     with open(file_path, "r") as file:
         lines = file.readlines()
@@ -869,7 +869,7 @@ def main():
     state_size = get_state(train_list, junction_list).shape[1]
     agent = DQNAgent(state_size, action_size)
 
-    output_file = "Common_junction/passenger.txt"
+    output_file = "Chennai_metro/passenger.txt"
     passenger_data=[]
     for junction in junction_list:
         if junction.signal == 1:

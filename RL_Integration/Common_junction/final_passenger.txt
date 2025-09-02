@@ -1,0 +1,17 @@
+{'name': 'P1', 'line': 1, 'arrival_time': '08:01', 'boarding_station': 'Junction1', 'destination': 'Junction2', 'leaving_time': '08:29', 'delay': 14.0, 'distance_traveled': 0, 'total_time': 0, 'shift': 0}
+{'name': 'P2', 'line': 1, 'arrival_time': '08:01', 'boarding_station': 'Junction1', 'destination': 'Junction2', 'leaving_time': '08:29', 'delay': 14.0, 'distance_traveled': 0, 'total_time': 0, 'shift': 0}
+{'name': 'P3', 'line': 1, 'arrival_time': '08:03', 'boarding_station': 'Junction1', 'destination': 'Junction3', 'leaving_time': '08:36', 'delay': 8.25, 'distance_traveled': 0, 'total_time': 0, 'shift': 0}
+{'name': 'P4', 'line': 1, 'arrival_time': '08:04', 'boarding_station': 'Junction1', 'destination': 'Junction3', 'leaving_time': '08:36', 'delay': 8.0, 'distance_traveled': 0, 'total_time': 0, 'shift': 0}
+{'name': 'P5', 'line': 1, 'arrival_time': '08:05', 'boarding_station': 'Junction1', 'destination': 'Junction3', 'leaving_time': '08:36', 'delay': 7.75, 'distance_traveled': 0, 'total_time': 0, 'shift': 0}
+{'name': 'P6', 'line': 2, 'arrival_time': '08:29', 'boarding_station': 'Junction5', 'destination': 'Junction6', 'leaving_time': '08:32', 'delay': 13.5, 'distance_traveled': 0, 'total_time': 0, 'shift': 0}
+{'name': 'P7', 'line': 2, 'arrival_time': '08:29', 'boarding_station': 'Junction5', 'destination': 'Junction6', 'leaving_time': '08:32', 'delay': 12.5, 'distance_traveled': 0, 'total_time': 0, 'shift': 0}
+{'name': 'P8', 'line': 2, 'arrival_time': '08:29', 'boarding_station': 'Junction5', 'destination': 'Junction6', 'leaving_time': '08:32', 'delay': 12.0, 'distance_traveled': 0, 'total_time': 0, 'shift': 0}
+{'name': 'P9', 'line': 1, 'arrival_time': '08:09', 'boarding_station': 'Junction1', 'destination': 'Junction2', 'leaving_time': '08:29', 'delay': 10.0, 'distance_traveled': 0, 'total_time': 0, 'shift': 0}
+{'name': 'P10', 'line': 1, 'arrival_time': '08:09', 'boarding_station': 'Junction1', 'destination': 'Junction3', 'leaving_time': '08:36', 'delay': 6.75, 'distance_traveled': 0, 'total_time': 0, 'shift': 0}
+{'name': 'P11', 'line': 1, 'arrival_time': '08:00', 'boarding_station': 'Junction2', 'destination': 'Junction3', 'leaving_time': '08:36', 'delay': 18.0, 'distance_traveled': 0, 'total_time': 0, 'shift': 0}
+{'name': 'P12', 'line': 2, 'arrival_time': '08:01', 'boarding_station': 'Junction4', 'destination': 'Junction5', 'leaving_time': '08:11', 'delay': 5.0, 'distance_traveled': 0, 'total_time': 0, 'shift': 0}
+{'name': 'P13', 'line': 2, 'arrival_time': '08:03', 'boarding_station': 'Junction4', 'destination': 'Junction6', 'leaving_time': '08:15', 'delay': 3.0, 'distance_traveled': 0, 'total_time': 0, 'shift': 0}
+{'name': 'P14', 'line': 2, 'arrival_time': '08:08', 'boarding_station': 'Junction4', 'destination': 'Junction6', 'leaving_time': '08:15', 'delay': 1.75, 'distance_traveled': 0, 'total_time': 0, 'shift': 0}
+{'name': 'P15', 'line': 2, 'arrival_time': '08:08', 'boarding_station': 'Junction4', 'destination': 'Junction6', 'leaving_time': '08:15', 'delay': 1.75, 'distance_traveled': 0, 'total_time': 0, 'shift': 0}
+{'name': 'P16', 'line': 2, 'arrival_time': '08:09', 'boarding_station': 'Junction4', 'destination': 'Junction6', 'leaving_time': '08:15', 'delay': 1.5, 'distance_traveled': 0, 'total_time': 0, 'shift': 0}
+{'name': 'P17', 'line': 2, 'arrival_time': '08:00', 'boarding_station': 'Junction5', 'destination': 'Junction6', 'leaving_time': '08:15', 'delay': 7.5, 'distance_traveled': 0, 'total_time': 0, 'shift': 0}

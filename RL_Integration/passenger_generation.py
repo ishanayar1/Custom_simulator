@@ -1,4 +1,3 @@
-
 import numpy as np
 from datetime import datetime
 import random
@@ -14,6 +13,7 @@ class Passenger:
         self.destination = destination
         self.leaving_time = ""
         self.delay = 0
+        self.distance_traveled= 0
         self.total_time = 0
         self.shift = 0
         
@@ -164,6 +164,7 @@ def total_time(arrival,departure):
 def distance(x1, y1, x2, y2):
     distance = math.sqrt((x2 - x1)**2 + (y2 - y1)**2)
     return distance
+
 
 def get_distance_between_junction(boarding_junction, destination_junction):
 

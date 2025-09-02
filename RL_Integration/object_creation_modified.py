@@ -126,8 +126,9 @@ def find_line_by_number(line_list, line_number):
 
 def obj_creation(file_path,train_list, junction_list, section_list, line_list):
     # dummy_secs_for_lines = {}
-    with open(file_path, "r") as file:
+    with open(file_path, 'r', encoding='utf-8-sig') as file:
         lines = file.readlines()
+
 
 
     mode = None
@@ -313,4 +314,3 @@ def arrange_junction(section_list, line_list):
             print((l.name))
 
     return
-

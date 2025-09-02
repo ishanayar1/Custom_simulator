@@ -1,2 +1,0 @@
-P1,1,08:00,Junction1,Junction6
-P2,2,08:00,Junction4,Junction3

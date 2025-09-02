@@ -1,0 +1,16 @@
+Rewards per episode:
+episode: 0/15, score: -81.25
+episode: 1/15, score: -120.25
+episode: 2/15, score: -94.75
+episode: 3/15, score: -63.25
+episode: 4/15, score: -156.25
+episode: 5/15, score: -63.25
+episode: 6/15, score: -76.75
+episode: 7/15, score: -81.25
+episode: 8/15, score: -76.75
+episode: 9/15, score: -96.25
+episode: 10/15, score: -109.75
+episode: 11/15, score: -63.25
+episode: 12/15, score: -151.75
+episode: 13/15, score: -99.25
+episode: 14/15, score: -178.75
