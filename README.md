@@ -68,6 +68,15 @@ Training output shows fluctuating negative rewards as the agent explores and imp
 Tuning **epsilon**, **gamma**, and other hyperparameters can further refine performance.
 
 ---
+## Our scenarios
+
+We experimented our RL agent on 2 major scenarios:
+1. Cross-Junction 
+    -When 2 lines intersect each other and have a common junction
+
+2. Chennai Metro
+    - We expanded our experiment to include a real life example, that of the Chennai metro network which has 2 common junctions.
+---
 ## How to Run the Code
 
 Follow these steps to execute the simulator and RL environment.
@@ -81,7 +90,7 @@ cd Custom_simulator
 ```bash
 cd RLIntegration
 ```
-### ** 3. Choose the Scenario to Run**
+###  3. Choose the Scenario to Run
 
 If you want to run the **Common Junction** scenario:
 
@@ -93,7 +102,7 @@ or if you want to run **Chennai Metro** scenario
 ```bash
 cd Chennai_metro
 ```
-### ** 4. Provide User Input**
+###  4. Provide User Input
 Each scenario requires a specific input file:
 
 Common Junction scenario:
@@ -104,12 +113,12 @@ Provide train configuration in chennaitrains_list.txt
 
 Modify the .txt file as needed for your simulation setup.
 
-### ** 5. Return to RL Integration**
+### 5. Return to RL Integration
 After editing the input file:
 ```bash
 cd ..
 ```
-### ** 6. Run the Appropriate Script **
+### 6. Run the Appropriate Script 
 For the Custom Simulator (Common Junction):
 ```bash
 python RL_Integrated_Custom_simulator.py
@@ -118,7 +127,7 @@ For Chennai Metro Simulation:
 ```bash
 python RL_on_chennai_metro.py
 ```
-### ** 7. View the Outputs **
+### 7. View the Outputs 
 
 After the run completes, inside the respective scenario folder you will find:
 
@@ -130,6 +139,16 @@ Visual representation of RL reward progression over episodes.
 
 Both set of files are automatically generated in the selected scenario folder.
 
+
+---
+## Output example of Common_junction scenario.
+Following plots are the rewards over episode for the scenario when 2 lines intersect each other at a common junction.
+
+![Reward Plot](RL_Integration/Common_junction/Rewards.png)
+![OptimalReward Plot](RL_Integration/Common_junction/OptimalRewards.png)
+![RandomReward Plot](RL_Integration/Common_junction/RandomRewards.png)
+
+We can observe that the Optimal policy gives us the minimum possible delay than Random policy. 
 
 
 
