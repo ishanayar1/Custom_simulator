@@ -23,7 +23,7 @@ Contains the core railway network simulation logic.
 Implements DQN-based reinforcement learning applied to the simulator environment.
 
 Contents of `RLIntegration/`:
-
+```
 RLIntegration/
 ├── Chennai_metro/ # Chennai Metro–specific simulation setup
 ├── Common_junction/ # Shared junction simulation setup
@@ -32,7 +32,7 @@ RLIntegration/
 ├── RL_on_chennai_metro.py # RL execution on the Chennai Metro model
 ├── object_creation_modified.py # Train, junction, and section object creation utilities
 ├── passenger_generation.py # Passenger arrival and generation logic
-
+```
 
 ---
 
