@@ -72,11 +72,12 @@ Tuning **epsilon**, **gamma**, and other hyperparameters can further refine perf
 ## Our scenarios
 
 We experimented our RL agent on 2 major scenarios:
-### 1. Cross-Junction 
+1. Cross-Junction 
 When 2 lines intersect each other and have a common junction
 
-![Cross junction scenario ](RL_Integration/Common_junction/network_cross_junction.png)
-### 2. Chennai Metro 
+<img src="RL_Integration/Common_junction/network_cross_junction.png" width="350" alt="Cross junction scenario">
+
+2. Chennai Metro 
 We expanded our experiment to include a real life example, that of the Chennai metro network which has 2 common junctions.
 ---
 ## How to Run the Code
@@ -147,11 +148,11 @@ Both set of files are automatically generated in the selected scenario folder.
 Following plots are the rewards over episode for the scenario when 2 lines intersect each other at a common junction.
 
 ### Reward Plot
-![Reward Plot](RL_Integration/Common_junction/Rewards.png)
+<img src="RL_Integration/Common_junction/Rewards.png" width="350" alt="Reward Plot">
 ### Optimal Reward
-![OptimalReward Plot](RL_Integration/Common_junction/OptimalRewards.png)
+<img src="RL_Integration/Common_junction/OptimalRewards.png" width="350" alt="Optimal Reward">
 ### Random Reward
-![RandomReward Plot](RL_Integration/Common_junction/RandomRewards.png)
+<img src="RL_Integration/Common_junction/RandomRewards.png" width="350" alt="Random Reward">
 
 We can observe that the Optimal policy gives us the minimum possible delay than Random policy. 
 
