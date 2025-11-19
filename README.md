@@ -77,7 +77,7 @@ Follow these steps to execute the simulator and RL environment.
 git clone https://github.com/ishanayar1/Custom_simulator.git
 cd Custom_simulator
 ```
-### ** 2. Go to the RLIntegration Directory**
+### 2. Go to the RLIntegration Directory
 ```bash
 cd RLIntegration
 ```
