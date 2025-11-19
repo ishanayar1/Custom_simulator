@@ -1,37 +1,62 @@
 # Custom_simulator
 
-The project implements a custom railway simulator integrated with Deep Q-Network (DQN) reinforcement learning to optimize train scheduling and passenger delay in railway networks, including real-world scenarios like the Chennai Metro system.​
+The project implements a **custom railway simulator** integrated with **Deep Q-Network (DQN)** reinforcement learning to optimize train scheduling and reduce passenger delay in railway networks, including real-world scenarios like the **Chennai Metro system**.
 
-The simulator models train transitions, passenger boarding/deboarding, and line switching at junctions, with dynamic event triggers and a signaling system that adapts halt times based on passenger queues and train capacity.​
+The simulator models:
 
-Key classes include Train, Section, Junction, Line, and Passenger, capturing the network’s operational states and activities.​
+- Train transitions  
+- Passenger boarding/deboarding  
+- Line switching at junctions  
+- Dynamic event triggers  
+- A signaling system that adapts halt times based on passenger queues and train capacity
 
-Setup & Usage Instructions
-The codebase is organized in two main folders:
+Key classes include **Train**, **Section**, **Junction**, **Line**, and **Passenger**, capturing the network’s operational states and activities.
 
-CustomSimulator: Contains the core railway network simulation logic.
+---
 
-RLIntegration: Implements DQN-based reinforcement learning applied to the simulator environment.​
+## Project Structure
 
-User Inputs required:
+### **1. `CustomSimulator/`**
+Contains the core railway network simulation logic.
 
-Network description file specifying trains (name, line, start time, speed, capacity), junctions (name, line, signal status, coordinates, passenger arrival rates), and sections connecting junctions.
+### **2. `RLIntegration/`**
+Implements DQN-based reinforcement learning applied to the simulator environment.
 
-Parameters for RL training, such as episode count and DQN hyperparameters (epsilon, gamma, learning rate).
+---
 
-Outputs generated:
+## User Inputs Required
 
-Train time-tables with details on arrivals and departures at junctions and sections.
+- **Network description file** specifying:
+  - Train details: name, line, start time, speed, capacity  
+  - Junction details: name, line, signal status, coordinates, passenger arrival rates  
+  - Section connections between junctions  
 
-Final passenger list showing journey details and computed delays per passenger.
+- **RL training parameters**,(will be added for each junction) including:
+  - Number of episodes  
+  - DQN hyperparameters (`epsilon`, `gamma`, `learning_rate`)
 
-Reward logs (negative passenger delays per episode) to track RL performance improvements.
+---
 
-The DQN agent trains over multiple episodes, learning to minimize overall passenger delay by making adaptive decisions at junctions (e.g., when to wait for transferring passengers versus proceeding).​
+## Outputs Generated
 
-Output shows fluctuating (negative) reward values as the RL agent seeks improved passenger outcomes; tuning of RL parameters like epsilon and gamma can further refine results.
+- **Train timetables** (arrival & departure times at each junction/section)  
+- **Final passenger list** with journey details and computed delays  
+- **Reward logs**: negative passenger delays per episode (used to track RL performance)
 
-The custom simulator and RL framework successfully model complex scenarios, such as intersecting railway lines and signal-based scheduling, and provide insights applicable to real-world metro networks.​
+---
 
+## Reinforcement Learning Behavior
 
+The DQN agent trains over multiple episodes, learning to minimize total passenger delay by making decisions at junctions—e.g., whether to:
 
+- Wait for transferring passengers  
+- Proceed to the next section
+
+Training output shows fluctuating negative rewards as the agent explores and improves.  
+Tuning **epsilon**, **gamma**, and other hyperparameters can further refine performance.
+
+---
+
+## Summary
+
+This custom simulator and RL framework effectively model complex metro scenarios—such as intersecting lines, dynamic signaling, and passenger flow—and provide insights applicable to real-world railway systems.
