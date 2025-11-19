@@ -148,11 +148,13 @@ Both set of files are automatically generated in the selected scenario folder.
 Following plots are the rewards over episode for the scenario when 2 lines intersect each other at a common junction.
 
 ### Reward Plot
-<img src="RL_Integration/Common_junction/Rewards.png" width="450" alt="Reward Plot">
+<img src="RL_Integration/Common_junction/Rewards.png" width="500" alt="Reward Plot">
+
 ### Optimal Reward
-<img src="RL_Integration/Common_junction/OptimalRewards.png" width="450" alt="Optimal Reward">
+<img src="RL_Integration/Common_junction/OptimalRewards.png" width="500" alt="Optimal Reward">
+
 ### Random Reward
-<img src="RL_Integration/Common_junction/RandomRewards.png" width="450" alt="Random Reward">
+<img src="RL_Integration/Common_junction/RandomRewards.png" width="500" alt="Random Reward">
 
 We can observe that the Optimal policy gives us the minimum possible delay than Random policy. 
 
