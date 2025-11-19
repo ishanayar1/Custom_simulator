@@ -76,19 +76,61 @@ Follow these steps to execute the simulator and RL environment.
 ```bash
 git clone https://github.com/ishanayar1/Custom_simulator.git
 cd Custom_simulator
-
-2. Go to the RLIntegration Directory
+```
+### *** 2. Go to the RLIntegration Directory***
 ```bash
 cd RLIntegration
-
-3. Choose the Scenario to Run
+```
+### *** 3. Choose the Scenario to Run***
 
 If you want to run the **Common Junction** scenario:
 
 ```bash
 cd Common_junction
+```
 
 or if you want to run **Chennai Metro** scenario
+```bash
+cd Chennai_metro
+```
+### *** 4. Provide User Input***
+Each scenario requires a specific input file:
+
+Common Junction scenario:
+Provide inputs in common_junction.txt
+
+Chennai Metro scenario:
+Provide train configuration in chennaitrains_list.txt
+
+Modify the .txt file as needed for your simulation setup.
+
+### *** 5. Return to RL Integration***
+After editing the input file:
+```bash
+cd ..
+```
+### *** 6. Run the Appropriate Script ***
+For the Custom Simulator (Common Junction):
+```bash
+python RL_Integrated_Custom_simulator.py
+```
+For Chennai Metro Simulation:
+```bash
+python RL_on_chennai_metro.py
+```
+### *** 7. View the Outputs ***
+
+After the run completes, inside the respective scenario folder you will find:
+
+- final_passenger.txt
+Contains the final passenger list with delays and journey details.
+
+- Reward Plot Images
+Visual representation of RL reward progression over episodes.
+
+Both set of files are automatically generated in the selected scenario folder.
+
+
 
 
 
